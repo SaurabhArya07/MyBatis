@@ -17,8 +17,8 @@ public class mybatisRead_ALL {
       
       //select contact all contacts		
 //      SelectStudent(1,session);
-      selectAllStudents(session);
-	  System.out.println("Records Read Successfully ");        
+//      selectAllStudents(session);
+      updateStudent(session, 1);     
       session.commit();   
       session.close();			
    }
@@ -42,9 +42,14 @@ public class mybatisRead_ALL {
 		}
 	}
   
-  private static void updateStudent(int id, SqlSession session) {
+  private static void updateStudent(SqlSession session, int id) {
 	  Student student = session.selectOne("Student.getById", id);
-	  
+	  student.setEmail("mohamad123@yahoo.com");
+      student.setPhone(90000000);
+      
+      //Update the student record
+      session.update("Student.update",student);
+      System.out.println("Record updated successfully");
   }
   
   
