@@ -18,7 +18,8 @@ public class mybatisRead_ALL {
       //select contact all contacts		
 //      SelectStudent(1,session);
 //      selectAllStudents(session);
-      updateStudent(session, 1);     
+//      updateStudent(session, 1); 
+      deleteStudent(session, 1);
       session.commit();   
       session.close();			
    }
@@ -50,6 +51,12 @@ public class mybatisRead_ALL {
       //Update the student record
       session.update("Student.update",student);
       System.out.println("Record updated successfully");
+  }
+  
+  private static void deleteStudent(SqlSession session, int id) {
+	  Student student = session.selectOne("Student.getById", id);
+	  session.delete("Student.deleteById", id);
+	  System.out.println("Record deleted successfully");
   }
   
   
